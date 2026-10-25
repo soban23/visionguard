@@ -1,0 +1,31 @@
+name: VisionGuard CI
+
+on: [push, pull_request]
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Lint
+        run: |
+          pip install flake8
+          flake8 app/ --max-line-length=120 --exclude=__pycache__ || true
+
+      - name: Run tests
+        run: |
+          pytest tests/
+
+      - name: Build Docker image
+        run: |
+          docker build -t visionguard-web .
