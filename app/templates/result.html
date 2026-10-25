@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Result</h1>
+<div class="result-card {{ 'ai' if label == 'AiArtData' else 'real' }}">
+    <p class="label">{{ label }}</p>
+    <p class="confidence">{{ confidence }}% confidence</p>
+    <p class="filename">File: {{ filename }}</p>
+</div>
+<a href="/">Classify another image</a>
+{% endblock %}

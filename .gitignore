@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+*.pyc
+.env
+*.db
+model/*.keras
+.dvc/cache
+toy-dvc
+dataset/
+archive.zip
+terminal_log.txt
+*.zip

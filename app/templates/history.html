@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Prediction History</h1>
+{% if records %}
+<table>
+    <tr><th>Time</th><th>Filename</th><th>Prediction</th><th>Confidence</th><th>Model</th></tr>
+    {% for r in records %}
+    <tr><td>{{ r.timestamp }}</td><td>{{ r.filename }}</td><td>{{ r.label }}</td><td>{{ (r.confidence*100)|round(2) }}%</td><td>{{ r.model_version }}</td></tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No predictions yet.</p>
+{% endif %}
+{% endblock %}
